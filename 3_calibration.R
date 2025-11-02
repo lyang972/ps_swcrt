@@ -1,11 +1,6 @@
 # 3_calibration.R
 # Bayesian calibration for duration-independent rho* and duration-dependent lambda bounds.
 
-if (!"dplyr" %in% loadedNamespaces()) library(dplyr)
-if (!"rstan" %in% loadedNamespaces()) library(rstan)
-if (!"tidyr" %in% loadedNamespaces()) library(tidyr)
-if (!"Matrix" %in% loadedNamespaces()) library(Matrix)
-
 # Load config and processed data
 load("Analysis_Config.RData")
 load(CONFIG_PATHS$PROCESSED_DATA)
