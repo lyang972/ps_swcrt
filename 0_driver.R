@@ -2,7 +2,7 @@
 # Run steps, keep outputs identical; lighter logs and comments.
 
 # Optional working directory
-# setwd('~/PROJECT_ps/swd_v22/')
+# setwd('~/PROJECT_ps/')
 
 # Packages
 pkgs <- c(
