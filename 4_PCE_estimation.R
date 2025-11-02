@@ -175,10 +175,15 @@ calculate_PCE_XC = function(t, d_z, d_z_star, I, params, X, C, lambda_z, lambda_
   if (!any(sel)) return(0)
 
   m1 = m_z[sel]; m2 = m_zs[sel]
-  Ey1 = calc_E_Y_given_M_Z_X_C(t, d_z,      m1, params, X, C)
-  Ey0 = calc_E_Y_given_M_Z_X_C(t, d_z_star, m2, params, X, C)
-  D1 = solve_Delta(t, d_z,      d_z_star, m1, Ey1, params, X, C, lambda_z)
-  D0 = solve_Delta(t, d_z_star, d_z,      m2, Ey0, params, X, C, lambda_mz)
+  n <- length(m1)
+  Ey1 <- numeric(n); Ey0 <- numeric(n)
+  D1  <- numeric(n); D0  <- numeric(n)
+  for (k in seq_len(n)) {
+    Ey1[k] <- calc_E_Y_given_M_Z_X_C(t, d_z,      m1[k], params, X, C)
+    Ey0[k] <- calc_E_Y_given_M_Z_X_C(t, d_z_star, m2[k], params, X, C)
+    D1[k]  <- solve_Delta(t, d_z,      d_z_star, m1[k], Ey1[k], params, X, C, lambda_z)
+    D0[k]  <- solve_Delta(t, d_z_star, d_z,      m2[k], Ey0[k], params, X, C, lambda_mz)
+  }
   if (any(!is.finite(D1)) || any(!is.finite(D0))) return(NA_real_)
   mean(expit(D1 + lambda_z  * m2) - expit(D0 + lambda_mz * m1))
 }
