@@ -26,10 +26,10 @@ CONFIG_PATHS <- list(
 )
 
 RUN_STEPS <- list(
-  PREPROCESS    = FALSE,
-  MODEL_FIT     = FALSE,
-  CALIBRATION   = FALSE,
-  PCE_ESTIMATION= FALSE
+  PREPROCESS    = TRUE,
+  MODEL_FIT     = TRUE,
+  CALIBRATION   = TRUE,
+  PCE_ESTIMATION= TRUE
 )
 
 detect_cores_hpc <- function() {
@@ -66,7 +66,7 @@ if (!any(unlist(RUN_STEPS))) {
 data_path <- CONFIG_PATHS$DATA_PATH
 
 # Pipeline
-if (RUN_STEPS$PREPROCESS)    source("1_process.R")         # renamed from 1_preprocess.R
+if (RUN_STEPS$PREPROCESS)    source("1_preprocess.R")         
 if (RUN_STEPS$MODEL_FIT)     source("2_fit_model.R")
 if (RUN_STEPS$CALIBRATION)   source("3_calibration.R")
 if (RUN_STEPS$PCE_ESTIMATION)source("4_PCE_estimation.R")
