@@ -1,4 +1,4 @@
-# 1_process.R — streamlined preprocessing (renamed from 1_preprocess.R)
+# 1_preprocess.R
 # Reads Excel, shapes long data, builds Stan list, saves to RData.
 
 suppressPackageStartupMessages({
